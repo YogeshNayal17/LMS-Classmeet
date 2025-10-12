@@ -1,0 +1,33 @@
+
+{% extends 'authentication/auth_base.html' %}
+
+{% block title %}Sign In - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+        <h3 class="card-title text-center mb-4">Sign In</h3>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary" style="background-color: var(--primary-blue);">Sign In</button>
+            </div>
+        </form>
+        <hr>
+        <div class="text-center">
+            <p class="text-muted">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

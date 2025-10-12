@@ -1,0 +1,93 @@
+{% extends 'classmeet/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'meetings/css/meetings.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <!-- Meeting Info Sidebar -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Meeting Details</h4>
+                </div>
+                <div class="card-body">
+                    <h5>{{ meeting.title }}</h5>
+                    <p class="text-muted">{{ meeting.description }}</p>
+                    <hr>
+                    <p><strong>Course:</strong> {{ meeting.course.title }}</p>
+                    <p><strong>Instructor:</strong> {{ meeting.created_by.get_full_name }}</p>
+                    <p><strong>Start Time:</strong> {{ meeting.start_time }}</p>
+                    <p><strong>Duration:</strong> {{ meeting.duration }} minutes</p>
+                </div>
+            </div>
+
+            <!-- Participants List -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="mb-0">Participants</h5>
+                </div>
+                <div class="card-body">
+                    <div id="participants-list">
+                        <!-- Participants will be populated via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Meeting Area -->
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body p-0">
+                    <!-- Video Conference Area -->
+                    <div id="meeting-container" class="meeting-container" style="height: 80vh;">
+                        <div id="video-grid" class="video-grid">
+                            <!-- Video elements will be added here via JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Meeting Controls -->
+                    <div class="meeting-controls p-3 bg-light">
+                        <div class="d-flex justify-content-center gap-3">
+                            <button id="toggle-audio" class="btn btn-outline-primary">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button id="toggle-video" class="btn btn-outline-primary">
+                                <i class="fas fa-video"></i>
+                            </button>
+                            <button id="share-screen" class="btn btn-outline-primary">
+                                <i class="fas fa-desktop"></i>
+                            </button>
+                            <button id="leave-meeting" class="btn btn-danger">
+                                Leave Meeting
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="{% static 'meetings/js/meeting-room.js' %}"></script>
+<script>
+    // Meeting configuration
+    const meetingInfo = {
+        id: "{{ meeting.id }}",
+        title: "{{ meeting.title }}",
+        courseUrl: "{% url 'course_detail' meeting.course.id %}"
+    };
+
+    // Current user information
+    const currentUser = {
+        id: "{{ request.user.id }}",
+        name: "{{ user_name }}"
+    };
+</script>
+{% endblock %}
+{% endblock %}

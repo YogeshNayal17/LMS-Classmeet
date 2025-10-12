@@ -1,0 +1,23 @@
+
+{% extends 'authentication/auth_base.html' %}
+
+{% block title %}Sign Up - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+        <h3 class="card-title text-center mb-4">Create an Account</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary" style="background-color: var(--primary-blue);">Sign Up</button>
+            </div>
+        </form>
+        <hr>
+        <div class="text-center">
+            <p class="text-muted">Already have an account? <a href="{% url 'signin' %}">Sign In</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

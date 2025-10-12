@@ -1,0 +1,89 @@
+{% extends 'classmeet/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Meetings</h2>
+        {% if is_teacher %}
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Schedule Meeting
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                {% comment %} Fetch course filter by teacher field {% endcomment %}
+                {% for course in courses %}
+                    <li><a class="dropdown-item" href="{% url 'schedule_meeting' course.id %}">{{ course.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Upcoming Meetings -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4 class="mb-0">Upcoming Meetings</h4>
+        </div>
+        <div class="card-body">
+            {% if upcoming_meetings %}
+                <div class="list-group">
+                    {% for meeting in upcoming_meetings %}
+                        <div class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-1">{{ meeting.title }}</h5>
+                                    <p class="mb-1">Course: {{ meeting.course.title }}</p>
+                                    <small class="text-muted">
+                                        Scheduled by: {{ meeting.created_by.get_full_name|default:meeting.created_by.username }}
+                                    </small>
+                                </div>
+                                <div class="text-end">
+                                    <p class="mb-1">{{ meeting.start_time|date:"M d, Y" }}</p>
+                                    <p class="mb-1">{{ meeting.start_time|time:"H:i" }}</p>
+                                    <a href="{% url 'meeting_room' meeting.id %}" class="btn btn-primary btn-sm">Join Meeting</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted mb-0">No upcoming meetings scheduled.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Past Meetings -->
+    <div class="card">
+        <div class="card-header">
+            <h4 class="mb-0">Past Meetings</h4>
+        </div>
+        <div class="card-body">
+            {% if past_meetings %}
+                <div class="list-group">
+                    {% for meeting in past_meetings %}
+                        <div class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-1">{{ meeting.title }}</h5>
+                                    <p class="mb-1">Course: {{ meeting.course.title }}</p>
+                                    <small class="text-muted">
+                                        Scheduled by: {{ meeting.created_by.get_full_name|default:meeting.created_by.username }}
+                                    </small>
+                                </div>
+                                <div class="text-end">
+                                    <p class="mb-1">{{ meeting.start_time|date:"M d, Y" }}</p>
+                                    <p class="mb-1">{{ meeting.start_time|time:"H:i" }}</p>
+                                    <span class="badge bg-secondary">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted mb-0">No past meetings.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
