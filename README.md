@@ -2,6 +2,8 @@
 
 This repository is a small Learning Management System (LMS) customized for synchronous meetings (video conferencing) using Django, Django Channels, and WebRTC. The README documents how to run the app locally, explains the architecture and signaling flow, lists all HTTP and WebSocket endpoints, highlights important features, and suggests useful packages for extending and hardening the system.
 
+🚀 **Live Demo:** [https://lms-classmeet.onrender.com](https://lms-classmeet.onrender.com)
+
 ## Table of Contents
 
 - Quick start (Windows)
