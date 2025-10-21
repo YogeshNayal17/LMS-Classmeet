@@ -72,6 +72,64 @@ daphne -b 0.0.0.0 -p 8000 lms.asgi:application
 - Join meeting room: http://127.0.0.1:8000/meetings/room/<meeting_id>/
 
 
+## LMS Outputs
+
+### Authentication
+This is the main authentication page.
+![Authentication](LMS%20Outputs/authentication.png)
+
+### Sign In
+Users can sign in using their credentials.
+![Sign In](LMS%20Outputs/signin.png)
+
+### Sign Up
+New users can create an account.
+![Sign Up](LMS%20Outputs/signup.png)
+
+### Course List
+This page displays a list of all available courses.
+![Course List](LMS%20Outputs/courselist.png)
+
+### Create Course
+Teachers can create new courses from this page.
+![Create Course](LMS%20Outputs/course.png)
+
+### Course Detail
+This shows a detailed view of a single course, including materials and discussions.
+![Course Detail](LMS%20Outputs/coursedetail.png)
+
+### Course Material
+This section shows the materials uploaded for a course.
+![Course Material](LMS%20Outputs/material.png)
+
+### Discussions (Student View)
+Students can view and participate in discussions.
+![Discussions (Student)](LMS%20Outputs/discussionS.png)
+
+### Discussions (Teacher View)
+Teachers can manage discussions.
+![Discussions (Teacher)](LMS%20Outputs/discussionT.png)
+
+### New Discussion (Student View)
+Students can start new discussion threads.
+![New Discussion (Student)](LMS%20Outputs/newdiscussionS.png)
+
+### Discussion Notification (Teacher View)
+Teachers receive notifications for new discussions or replies.
+![Discussion Notification](LMS%20Outputs/discussionnotificationT.png)
+
+### Meeting List (Student View)
+Students can see a list of scheduled meetings for their courses.
+![Meeting List (Student)](LMS%20Outputs/meetinglistS.png)
+
+### Meeting List (Teacher View)
+Teachers can see and manage scheduled meetings.
+![Meeting List (Teacher)](LMS%20Outputs/meetinglistT.png)
+
+### Meeting Room
+The virtual meeting room where video conferencing takes place.
+![Meeting Room](LMS%20Outputs/meeting.png)
+
 ## Architecture & Flow
 
 High level components:
